@@ -13,7 +13,7 @@
   <license>AGPLv3</license>  <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <url type="website">http://github.com/gbr1/ros_openvino</url> <!-- Author tags are optional, multiple are allowed, one per tag -->
+  <url>http://www.ros.org/wiki/ros_openvino</url> <!-- Author tags are optional, multiple are allowed, one per tag -->
   <!-- Authors do not have to be maintainers, but could be -->
   <!-- Example: -->
    <author email="giovannididio.bruno@gmail.com">Giovanni di Dio Bruno</author>   <!-- The *depend tags are used to specify dependencies -->
