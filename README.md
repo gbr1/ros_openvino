@@ -12,7 +12,7 @@ Entire package is born to support Myriad X, so it works perfectly with:
 If you enable *depth analysis* you can add depth image topic to obtain 3d boxes, visible as markers in rviz.
 
 ## **Wiki**
-[Wiki home](https://github.com/gbr1/ros_openvino/wiki/ros_openvino-wiki!)
+[Wiki home](https://github.com/gbr1/ros_openvino/wiki)
 
 ## **Setup**
 You need some steps to get ros_openvino working.<br>
@@ -83,6 +83,7 @@ If OpenVINO works on Ubuntu 18.04 this package should be compatible with ROS Mel
 
 ## Future steps
 - add face and body tracking
+- improve depth analysis
 
 <br>
 <br>
