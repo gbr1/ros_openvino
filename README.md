@@ -34,38 +34,27 @@ If you have already this kind of stuffs, please take care to modify steps for yo
 all installation steps and a case of study configuration are described in [Setup environment wiki page](https://github.com/gbr1/ros_openvino/wiki/Setup-environment).
 
 
-Remember that OpenVINO enviroment variables, ROS enviroment variables and ROS workspace need to be sourced in `bashrc`.<br>
+Remember that OpenVINO enviroment variables, ROS enviroment variables and ROS workspace need to be sourced in `bashrc`. <br>
 
 
 ### **- Tests**
 
 There are some demo launch files.
 1. **Webcam and GPU**
-<br>
-you need to install usb_cam node:
-<br>
+<br>you need to install usb_cam node:<br>
 `sudo apt-get install ros-kinetic-usb-cam`
-<br>
-then type:
-<br>
+<br>then type:<br>
 `roslaunch ros_openvino gpu_demo_webcam.launch`
 
 2. **Webcam and Myriad**
-<br>
-you need to install usb_cam node:
-<br>
+<br>you need to install usb_cam node:<br>
 `sudo apt-get install ros-kinetic-usb-cam`
-<br>
-then type:
-<br>
+<br>then type:<br>
 `roslaunch ros_openvino myriad_demo_webcam.launch`
 
 3. **Realsense D435/D435i/D415 and Myriad**
-<br>
-you need to install realsense package, follow [here](https://github.com/intel-ros/realsense) step-by-step according your environment setup.
-<br>
-After that, just type:
-<br>
+<br>you need to install realsense package, follow [here](https://github.com/intel-ros/realsense) step-by-step according your environment setup.<br>
+After that, just type:<br>
 `roslaunch ros_openvino myriad_demo_realsense.launch`
 
 <br>
