@@ -45,18 +45,20 @@ There are some demo launch files.
 `sudo apt-get install ros-kinetic-usb-cam`
 <br>then type:<br>
 `roslaunch ros_openvino gpu_demo_webcam.launch`
+<br>![gpu](https://user-images.githubusercontent.com/9216366/53649736-21db3400-3c43-11e9-9353-ee603390aedc.png)
 
 2. **Webcam and Myriad**
 <br>you need to install usb_cam node:<br>
 `sudo apt-get install ros-kinetic-usb-cam`
 <br>then type:<br>
 `roslaunch ros_openvino myriad_demo_webcam.launch`
+<br>![myriad_webcam](https://user-images.githubusercontent.com/9216366/53649817-5b13a400-3c43-11e9-963c-7f41e899b72c.png)
 
 3. **Realsense D435/D435i/D415 and Myriad**
 <br>you need to install realsense package, follow [here](https://github.com/intel-ros/realsense) step-by-step according your environment setup.<br>
 After that, just type:<br>
 `roslaunch ros_openvino myriad_demo_realsense.launch`
-
+<br>![myriad](https://user-images.githubusercontent.com/9216366/53649915-98783180-3c43-11e9-81ab-2579c291af1e.png)
 <br>
 
 ## **Nodes**
