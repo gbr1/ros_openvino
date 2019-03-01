@@ -1,0 +1,33 @@
+<!-- 
+ * This file is part of the ros_openvino package (https://github.com/gbr1/ros_openvino or http://gbr1.github.io).
+ * Copyright (c) 2019 Giovanni di Dio Bruno.
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ * 
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<launch>
+    <node name="object_detection" pkg="ros_openvino" type="object_detection" output="screen">
+        <remap from="/object_detection/input_image" to="/camera/color/image_raw" />
+        <remap from="/object_detection/input_depth" to="/camera/aligned_depth_to_color/image_raw" />
+        <remap from="/object_detection/camera_info" to="/camera/aligned_depth_to_color/camera_info" />
+        <param name="threshold"         value="0.5" />
+        <param name="target"            value="MYRIAD" />
+        <param name="model_network"     value="$(find ros_openvino)/models/FP16/mobilenet-ssd/mobilenet-ssd.xml" />
+        <param name="model_weights"     value="$(find ros_openvino)/models/FP16/mobilenet-ssd/mobilenet-ssd.bin" />
+        <param name="model_labels"      value="$(find ros_openvino)/models/FP16/mobilenet-ssd/mobilenet-ssd.labels" />
+        <param name="model_colors"      value="$(find ros_openvino)/models/FP16/mobilenet-ssd/mobilenet-ssd.colors" />
+        <param name="output_as_image"   value="true" />
+        <param name="output_as_list"    value="true" />
+    </node>
+</launch>
