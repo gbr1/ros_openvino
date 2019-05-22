@@ -564,6 +564,7 @@ int main(int argc, char **argv){
                 if (output_as_list){
                     results_list.header.stamp=ros::Time::now();
                     result_pub.publish(results_list);
+                    results_list.objects.clear();
                 }
                 
                 //frame output
