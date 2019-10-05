@@ -20,7 +20,7 @@ If you have already this kind of stuffs, please take care to modify steps for yo
 
 ### **- Prerequisites**
 1. Ubuntu 16.04 LTS
-2. OpenVINO R5 or newer
+2. OpenVINO 2018 R5, OpenVINO 2019 R1 (__Note: from 2019 R2, Intel changed APIs so it is not compatible with this package__)
 3. ROS Kinetic Kame
 
 ### **- Setup** ***ros_openvino***
