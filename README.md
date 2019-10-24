@@ -16,12 +16,14 @@ If you enable *depth analysis* you can add depth image topic to obtain 3d boxes,
 
 ## **Setup**
 You need some steps to get ros_openvino working.<br>
+If you are working on a Myriad based device (NCS, NCS2, AI Core, AI Core X) follow [this guide](https://github.com/gbr1/ros_openvino/wiki/Fast-setup-for-Myriad-based-devices) because is faster.
+
 If you have already this kind of stuffs, please take care to modify steps for your case.
 
 ### **- Prerequisites**
-1. Ubuntu 16.04 LTS
-2. OpenVINO 2018 R5, OpenVINO 2019 R1 (__Note: from 2019 R2, Intel changed APIs so it is not compatible with this package__)
-3. ROS Kinetic Kame
+1. Ubuntu 16.04/18.04
+2. OpenVINO 2018 R5 or newer (latest officially tested is 2019 R3)
+3. ROS Kinetic Kame/Melodic Morenia
 
 ### **- Setup** ***ros_openvino***
 1. Clone repo in your **source folder**, assuming `catkin_ws` as your ROS workspace:<br>
