@@ -31,7 +31,8 @@ If you have already this kind of stuffs, please take care to modify steps for yo
 `git clone http://github.com/gbr1/ros_openvino.git`<br>
 2. Compile!<br>
 `cd ~/catkin_ws`<br>
-`catkin_make`
+`catkin_make`<br>
+`catkin_make install`
 
 all installation steps and a case of study configuration are described in [Setup environment wiki page](https://github.com/gbr1/ros_openvino/wiki/Setup-environment).
 
