@@ -222,7 +222,7 @@ int main(int argc, char **argv){
             ROS_INFO("Frame id used: %s", depth_frameid.c_str());
         }
         else{
-            depth_frameid="/camera_link";
+            depth_frameid="camera_link";
             ROS_INFO("[Default] Frame id: %s", depth_frameid.c_str());
         }
 
@@ -308,12 +308,24 @@ int main(int argc, char **argv){
         }
         
         //setup inference engine device, default is MYRIAD, but you can choose also GPU or CPU (CPU is not tested)
-        InferencePlugin OpenVino_plugin = PluginDispatcher({"../../../lib/intel64", ""}).getPluginByDevice(device);
+        //InferencePlugin OpenVino_plugin = PluginDispatcher({"../../../lib/intel64", ""}).getPluginByDevice(device);
+        InferenceEngine::Core core;
+        //ROS_WARN("core");
+        //ROS_WARN("device");
 
         //Setup model, weights, labels and colors
-        CNNNetReader network_reader;
+        /*CNNNetReader network_reader;
         network_reader.ReadNetwork(network_path);
         network_reader.ReadWeights(weights_path);
+        */
+
+        //model with weights
+        //CNNNetwork network_reader = core.ReadNetwork("/home/gbr1/Desktop/mobilenet-ssd.xml","/home/gbr1/Desktop/mobilenet-ssd.bin"/*network_path*/);
+        CNNNetwork network_reader = core.ReadNetwork(network_path,weights_path);
+        //CNNNetwork network_reader = core.ReadNetwork(network_path.c_str(),weights_path.c_str());
+        //ROS_WARN("cnnn");
+                
+        // labels and colors
         std::vector<std::string> vector_labels;
         std::ifstream inputFileLabel(labels_path);
         std::copy(std::istream_iterator<std::string>(inputFileLabel),std::istream_iterator<std::string>(),std::back_inserter(vector_labels));
@@ -322,20 +334,22 @@ int main(int argc, char **argv){
         std::copy(std::istream_iterator<std::string>(inputFileColor),std::istream_iterator<std::string>(),std::back_inserter(vector_colors));
 
         //setup input stuffs
-        InputsDataMap input_info(network_reader.getNetwork().getInputsInfo());
-        
+        InputsDataMap input_info(network_reader.getInputsInfo()); //?
+         //       ROS_WARN("info");
         InputInfo::Ptr& input_data = input_info.begin()->second;
         auto inputName = input_info.begin()->first;
         input_data->setPrecision(Precision::U8);
 
         input_data->getPreProcess().setResizeAlgorithm(ResizeAlgorithm::RESIZE_BILINEAR);
         input_data->getInputData()->setLayout(Layout::NHWC);
+        //ROS_WARN("input");
 
         //setup output
-        OutputsDataMap output_info(network_reader.getNetwork().getOutputsInfo());
+        OutputsDataMap output_info(network_reader.getOutputsInfo());
         DataPtr& output_data = output_info.begin()->second;
         auto outputName = output_info.begin()->first;
-        const int num_classes = network_reader.getNetwork().getLayerByName(outputName.c_str())->GetParamAsInt("num_classes");
+        //const int num_classes = network_reader.layerCount();
+        const int num_classes = 21; //patch due networlk_reader layer count is wrong 
         if (vector_labels.size() != num_classes) {
         if (vector_labels.size() == (num_classes - 1))
                 vector_labels.insert(vector_labels.begin(), "no-label");
@@ -351,13 +365,16 @@ int main(int argc, char **argv){
 
         output_data->setPrecision(Precision::FP32);
         output_data->setLayout(Layout::NCHW);
+        //        ROS_WARN("output");
 
         //load model into plugin
-        ExecutableNetwork model_network = OpenVino_plugin.LoadNetwork(network_reader.getNetwork(), {});
+        ExecutableNetwork model_network = core.LoadNetwork(network_reader, device, {});
+        //        ROS_WARN("model");
 
         //inference request to engine
         InferRequest::Ptr engine_next = model_network.CreateInferRequestPtr();
         InferRequest::Ptr engine_curr = model_network.CreateInferRequestPtr();
+       //         ROS_WARN("infer request");
 
         //start stuffs
         bool is_first_frame = true;
@@ -504,7 +521,7 @@ int main(int argc, char **argv){
 
                                 //if output as markers is true show flaoting text in rviz
                                 if (output_markerslabel){
-                                    marker_label.header.frame_id= depth_frameid;
+                                    marker_label.header.frame_id=depth_frameid;
                                     marker_label.header.stamp = ros::Time::now();
                                     marker_label.ns="objects_label";
                                     marker_label.id = kmarker;

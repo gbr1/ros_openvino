@@ -7,7 +7,7 @@ project(ros_openvino)
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
-find_package(InferenceEngine 1.5)
+find_package(InferenceEngine 2021.4)
 if (NOT InferenceEngine_FOUND)
     message(FATAL_ERROR "")
 endif()
